@@ -216,3 +216,50 @@ Si puo' fare con l'`ovveriding`: permette di riscrivere l'implementazione di met
 
 > Una classe astratta non e' istanziabile (manca qualcosa)
 
+Riusabilita' e estendibilita' (facile da estendere, ottengo mantenibilita')
+
+Il polimorfismo funziona grazie al `late binding` (istanziamento dinamico)
+Esempio lista di figure geometriche: il supertipo e' figura geometrica, si specializzano in figure concrete (quadrato, cerchio, ...).
+Lancio su tutta la lista il metodo rotate(). Il compilatore non sa che metodo specializzato chiamare (se quello del quadrato, del cerchio o altri. Quindi in questo caso si effettua il late binding. A runtime (non compile time) guarda che oggetto e' quello della figura geometrica e lancia il suo metodo rotate() (addirittura quello della classe padre era vuoto (era una classe astratta)).
+
+## Delegazione
+
+Un oggetto delega ad un altro delle operazioni (perche' e' gia' li' e le fa meglio).
+Ad esempio potrei avere una classe String con tante belle utilities per le stringhe.
+Se poi creo una classe Persona che usa diverse stringhe al suo interno (tipo nome, congome) faccio i campi di tipo Stringa, non (char*).
+
+La delegazione si ha anche quando collego uno studente ai suoi esami.
+
+Quindi si verifica sia quando dentro una classe ci metto dentro un altra che mi serve per delegare delle operazioni (tipo Persona e Stringa) oppure si verifica anche quando collego un oggetto ad un altro (tipo dentro uno Studente metto un puntatore a Corso).
+
+* L'associazione (riga 72 di questo file) e' un meccanismo di astrazione che nel paradigma ad oggetti e' implementato dalla delegazione.
+
+
+## Nascita del paradigma ad oggetti
+
+Nasce negli anni 60 coi primi linguaggi talebani della programmazione ad oggetti.
+Poi C++ negli anni 80 che da il via poi a java e python che oggi sono popolarissimi.
+
+L’obiettivo principale dell’approccio orientato agli oggetti (OO, object-oriented) è migliorare la produttività aumentando l’estendibilità e la riusabilità del software e controllando la complessità e i costi della manutenzione.
+
+Dall'approccio funzionale (che abbiamo detto che conviene poco perche' le funzionalita' cambiano spesso nel tempo).
+Si passa dall'approccio ad oggetti.
+
+* ANALISI: va dall’inizio del progetto fino all’analisi delle specifiche utente e allo studio di fattibilità (cosa il sistema deve fare)
+* DESIGN: progettazione logica e fisica del sistema (come lo deve fare)
+* IMPLEMENTAZIONE: scrittura del codice, test di verifica, validazione, manutenzione
+    * I confini tra le fasi non sono più distinti, infatti il centro di interesse è lo stesso: gli oggetti e le loro interrelazioni
+    * Il processo di sviluppo OO è iterativo: si adotta il modello a fontana, in cui lo sviluppo raggiunge un alto livello per poi ritornare a un livello precedente e risalire di nuovo
+    * L’ereditarietà permette di aggiungere nuove caratteristiche a un sistema riducendo i costi di manutenzione (estendibilità), e di costruire nuove funzionalità a partire dall’esistente (riusabilità) riscrivendo solo quella parte di codice inadeguato e solo per gli oggetti che ne hanno bisogno
+
+Una classe in pratica e' un modulo quindi stiamo anche applicando il principio di modularizzazione.
+Il codice si basa sulla parte statica del dominio quindi in genere il codice ha vita piu' lunga.
+
+Diminuiscono i costi di manutenzione.
+Non devo creare ne classi enormi ne classi minuscole. Qual'e' il criterio per decidere? Le classi che creo devono corrispondere ad un elemento del dominio applicativo. (p24 OOAnalisis)
+
+C'erano diversi metodi di programmazione OO che poi hanno dato vita ad UML che ha sostituito tutti gli altri.
+Oggi UML e' l'unico linguaggio che su usa oggi.
+
+
+
