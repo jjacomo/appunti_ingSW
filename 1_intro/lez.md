@@ -1,3 +1,123 @@
+# Recupero 24/09/2026 dal campus di Forli
+
+L’`ingegneria del software` tratta la realizzazione di sistemi software (sw) di dimensioni e complessità talmente elevate da richiedere uno o più team di persone per la loro costruzione
+
+"L’ingegneria del software è l’approccio sistematico allo sviluppo, all’operatività, alla manutenzione e al ritiro del software".
+Il che vuol dire che c'e' un modo (una teoria) per fare il software (svilupparlo, operarlo, mantenerlo, ritirarlo).
+
+"L’ingegneria del software è la disciplina tecnologica e manageriale che riguarda la produzione sistematica e la manutenzione dei prodotti software che vengono sviluppati e modificati `entro i tempi e i costi preventivati`"
+
+"L’ingegneria del software è un corpus di teorie, metodi e strumenti, sia di tipo tecnologico che organizzativo, che consentono di produrre applicazioni con le desiderate caratteristiche di `qualità`"
+
+## Qualita' del software
+
+Le qualità su cui si basa la valutazione di un sw possono essere classificate in:
+* `Interne`: riguardano le caratteristiche legate allo sviluppo del sw; non sono visibili agli utenti
+* `Esterne`: riguardano le funzionalità fornite dal prodotto; sono visibili agli utenti
+
+> [!WARNING]
+> Queste due categorie sono strettamente collegate, infatti non e'
+> possibile ottenere le qualita' esterne se il sw non gode delle interne.
+
+Sono anche classificate in:
+* `Relative al prodotto`: riguardano le caratteristiche stesse del sw e sono sempre valutabili
+* `Relative al processo`: riguardano i metodi utilizzati durante lo sviluppo del sw
+
+### Qualita'
+
+* [Correttezza]: un sw è corretto se rispetta le specifiche di progetto;  -- _esterna, rel al prodotto_
+* [Affidabilità]: un sw è affidabile se l’utente può dipendere da esso; -- _esterna, rel al prodotto_
+* [Robustezza]: un sw è robusto se si comporta in modo ragionevole anche in circostanze non previste dalle specifiche di progetto (es. input incorretti, rotture di dischi); -- _esterna, rel al prodotto, rel al processo_
+* [Efficienza]: un sw è efficiente se usa intelligentemente le risorse di calcolo; -- _esterna, rel al prodotto_
+* [Facilità d’uso]: un sw è facile da usare se l’interfaccia che presenta all’utente gli permette di esprimersi in modo naturale -- _esterna rel al prodotto_
+* [Verificabilità]: un sw è verificabile se le sue caratteristiche (correttezza, performance, ecc.) sono facilmente valutabili -- _interna, rel al prodotto, rel al processo_
+* [Riusabilità]: un sw è riusabile se può essere usato, in tutto o in parte, per costruire nuovi sistemi -- _interna, rel al prodotto_
+* [Portabilità]: un sw è portabile se può funzionare su più piattaforme (es. Java) -- _esterna, rel al prodotto_
+* [Facilità di manutenzione]: un sw è facile da manutenere non solo se è strutturato in modo tale da facilitare la ricerca degli errori (`modifiche correttive`) ma anche se la sua struttura permette di aggiungere nuove funzionalità al sistema (`modifiche perfettive`) o di adattarlo ai cambiamenti del dominio applicativo (`modifiche adattative`) -- _interna, relativa al prodotto_
+* [Interoperabilità]: fa riferimento all’abilità di un sistema di coesistere e cooperare con altri sistemi (es. un word processor in cui possono essere creati grafici) -- _esterna, rel al prodotto_
+* [Produttività]: misura l’efficienza del processo di produzione del software in termini di velocità di consegna del sw; -- _rel processo_
+* [Tempestività]: misura la capacità del processo di produzione del software di valutare e rispettare i tempi di consegna del prodotto; -- _rel al processo_
+* [Trasparenza]: un processo di produzione del software si dice trasparente se permette di capire il suo stato attuale e tutti i suoi passi; -- _rel al processo_
+
+## Ciclo di vita del software
+
+1. Definizione strategica:
+    Vengono prese decisioni sull’area aziendale che deve essere oggetto di automazione 
+2. Pianificazione:
+    Vengono definiti gli obiettivi, evidenziati i fabbisogni e viene condotto uno studio di fattibilità per individuare possibili strategie di attuazione e avere una prima idea dei `costi`, dei `benefici` e dei `tempi`. Deve portare ad individuare priorita' e interventi realizzabili.
+3. Controllo di qualità:
+    Viene predisposto un piano di controllo di qualità per il progetto, allo scopo di garantire il rispetto delle specifiche e di controllare che il sistema realizzato si comporti come previsto
+4. Analisi dei requisiti:
+    Formalizza i requisiti avvalendosi di tecniche di modellazione della realtà e produce macro-specifiche per la fase di progettazione
+5. Progettazione del sistema:
+    Interpreta i requisiti in una soluzione architetturale di massima. Produce specifiche indipendenti dai particolari strumenti che saranno usati per la costruzione del sistema
+6. Progettazione esecutiva:
+    Vengono descritti struttura e comportamento dei componenti dell’architettura, producendo specifiche che possano dar luogo, attraverso il ricorso a strumenti di sviluppo opportuni, a un prodotto funzionante
+7. Realizzazione e collaudo in fabbrica:
+    Il sistema viene implementato sulla piattaforma prescelta e viene testato internamente ( a-test) sulla base dei casi prova definiti durante la fase di analisi
+8. Certificazione:
+    L’attività di certificazione del software ha lo scopo di verificare che esso sia stato sviluppato secondo i criteri previsti dal metodo tecnico di progetto, in conformità alle specifiche di sistema e a tutta la documentazione di progetto
+9. Installazione:
+    Il sistema viene installato e configurato, e vengono recuperati gli eventuali dati pregressi 
+10. Collaudo del sistema installato:
+    Gli utenti testano “in vitro” il prodotto installato ( b-test). Si possono evidenziare errori bloccanti (malfunzionamenti che pregiudicano l’attività di collaudo), errori non bloccanti (malfunzionamenti che non pregiudicano l’attività di collaudo), problemi di operatività (una funzionalità richiesta non viene attuata adeguatamente) e funzionali (una funzionalità richiesta non è implementata)
+11. Esercizio:
+    Quando il collaudo dà esito positivo il sistema viene avviato (“messo in produzione”), inizialmente affiancando e poi sostituendo gradualmente l’eventuale sistema preesistente
+12. Diagnosi:
+    Durante l’esercizio gli utenti rilevano eventuali errori
+13. Manutenzione:
+    Gli errori che si manifestano durante il funzionamento vengono segnalati e corretti (manutenzione correttiva). Può inoltre essere necessario intervenire sul software per adattarlo ai cambiamenti del dominio applicativo (manutenzione adattativa)
+14. Evoluzione:
+    Si valutano le possibilità di far evolvere il sistema incorporando nuove funzionalità o migliorandone l’operatività (manutenzione evolutiva o perfettiva) 
+
+### Definizione strategica e pianificazione (1 e 2)
+
+L'idea è decidere, con un orizzonte anche di 3-5 anni, quali progetti informatici convenga realizzare considerando la situazione attuale e le risorse disponibili. Non vengono considerati soltanto aspetti informatici, ma anche informativi e organizzativi. Alla fine bisogna individuare le priorità e gli interventi concretamente realizzabili, valutandone anche i costi.
+
+Quindi è una visione molto "manageriale":
+Che cosa vorremmo fare?
+        ↓
+Quali risorse abbiamo?
+        ↓
+Quali progetti sono più importanti?
+        ↓
+Quanto costano?
+        ↓
+Quali realizziamo davvero?
+
+### Studio di fattibilita' (2)
+
+Lo studio di fattibilità parte quando esiste già un'idea abbastanza concreta: sappiamo quale problema vogliamo risolvere, l'area di intervento e almeno a grandi linee quale potrebbe essere il progetto.
+Il suo scopo è fornire ai responsabili le informazioni necessarie per decidere se avviare effettivamente il progetto e quindi `effettuare l'investimento`.
+
+Bisogna chiarire:
+Perché lo facciamo?             → obiettivi
+Chi/cosa riguarda?              → ambito e attori
+Che vantaggi porterà?           → benefici attesi
+Come sarà la soluzione?         → caratteristiche
+Come sarà fatto grossomodo?     → progetto di massima
+Quanto lavoro/costo richiede?   → stima impegno e costi
+Quanto tempo richiede?          → tempi
+Come verrà realizzato?          → modalità operative
+
+3 tipi di fattibilita':
+* Fattibilità tecnica:
+    Esistono strumenti idonei? La proposta è realizzabile nell’ambito dell’organizzazione esistente? Il sistema sarà accettato e utilizzato? `"Siamo tecnicamente in grado di farlo?"`
+* Fattibilità economica:
+    I costi economici e le altre risorse necessarie per la realizzazione sono giustificati dai benefici attesi?
+* Fattibilità temporale:
+    La realizzabilità si può concretizzare in tempi “accettabili” (rispetto ai quali il sistema continua ad essere utile)?
+
+Serve a rendere più consapevoli le decisioni di investimento, confrontare costi e benefici, ridurre l'incertezza e i rischi e trasformare una semplice idea in un progetto sufficientemente concreto da poter entrare nella fase di realizzazione.
+
+### Analisi dei requisiti
+
+Ancora prima di iniziare devo chiedermi:
+`Cosa deve fare il sistema?`
+Lo scopo è produrre un documento di specifica dei requisiti che diventerà l’input delle successive fasi di progettazione e realizzazione.
+
+DIO BO CHE DUE COJONI STA MATERIA, LA CONTINUO UN ALTRA VOLTA.
+
 # 18/09/2026
 
 "travaso di bile"
@@ -135,131 +255,4 @@ Ho un problema, magari c'e' un problema simile piu' generale che pero' ha gia' u
 Ad esempio i design pattern. Risolvono dei problemi noti in modo efficiente e si sa che vanno bene.
 
 ---
-
-# Il paradigma a Oggetti
-
-_Un oggetto è un individuo sostanziale che possiede un identità e un insieme di proprietà, che ne rappresentano lo stato e il comportamento_.
-Un'oggetto non e' una classe. E' composto da attributi che ad ogni istante ne definiscono lo `stato` (analisi orientata agli stati), funzionalita' (dicono cosa puo' fare l'oggetto) e un identificatore (OID, object identifier).
-
-I concetti fondamentali:
-* oggetto
-* astrazione
-* classe
-* incapsulamento
-* ereditarietà
-* polimorfismo - late binding
-* delegazione
-
-# 22/09/2026
-
-* Ogni operazione dichiarata da un oggetto specifica il nome dell’operazione, gli oggetti che prende come parametri e il valore restituito (signature)
-* L’oggetto su cui l’operazione opera è definito implicitamente
-* L’insieme di tutte le signature delle operazioni di un oggetto sono dette interfaccia dell’oggetto
-    * L’interfaccia specifica l’insieme completo di tutte le richieste che possono essere inviate all’oggetto
-
-Per passare da una interfaccia (signature) a una classe ci vogliono le `implementazioni` (metodi).
-
-tipo e supertipo (p6)
-
-`Astrazione dello stato` = calcolare un dato derviato a partire dallo stato di un oggetto.
-
-Partendo dai tipi di dati astratti e implementandoli ottengo una classe.
-
-> Un oggetto è sempre istanza di esattamente una classe
-
-Qual'e' un operazioen che restituisce un astrazione di uno stato, ad esempio in una classe persona:
-Tipo isMaggiorenne: calcola l'eta' a partire dalla data di nascita e vede se e' >18.
-
-Sostenere un esame non cambia lo stato, fa un astrazione (?), lo studente viene collegato all'oggetto esame che ha sostenuto 
-
-## Principio di Incapsulamento
-
-Information hiding.
-Lo stato di un oggetto e' nascosto al suo interno (non puoi mettere getter e setter altrimenti e' inutile).
-L'unico modo per accedere all'oggetto si fa attraverso un interfaccia.
-Attributi privati (lo so che in teoria si puo' mettere anche public ma sono linguaggi object oriented non object based).
-
-* I dettagli dell’implementazione di una classe sono privati, cioè manipolabili direttamente solo dai metodi della classe e quindi protetti
-* L’accesso dall’esterno agli attributi della classe avviene attraverso una ristretta interfaccia pubblica, costituita da un sottoinsieme dei metodi della classe
-* Un oggetto esegue una operazione quando riceve una richiesta (messaggio) da un oggetto client
-
-### Vantaggi
-Proibisci di modificare direttamente lo stato dell'oggetto dall'esterno, definisci tu i modi per modificare il tuo oggetto (cosi' eviti anche che ci siano casini).
-Cosi' mi da la non dipendenza dai dettagli implementativi che possono cambiare (l'interfaccia).
-
-Ha anche lo svantaggio di essere un po' piu' difficile l'implementazione(?).
-
-## Operazioni e metodi
-
-Operazioni: signatures
-Metodi: implementazione
-
-I metodi possono essere classificati in:
-* costruttori, per costruire oggetti a partire da parametri di ingresso restituendo l’OID dell’oggetto costruito. E' consigliato avercelo sempre cosi' da costrurire ogi volta un oggetto che abbia sempre una identita' sostanziale (e' meglio non avere un oggetto indefinito per cui ho solo allocato dello spazio).
-* distruttori, per cancellare gli oggetti ed eventuali altri oggetti ad essi collegati (in java non esiste veramente, c'e' il garbage collector)
-* accessori, per restituire informazioni sul contenuto degli oggetti (proprietà derivate)
-* trasformatori, per modificare lo stato degli oggetti e di eventuali altri oggetti ad essi collegati
-
-## Ereditarieta'
-
-Basare la definizione e implementazione di una classe su quelle di altre classi.
-
-Per l'ereditarieta' multipla si puo' costruire un grafo direzionato (che deve essere per forza aciclico altrimenti tautologia)
-
-Tutte le cose che posso fare con il supertipo lo posso fare anche con la classe sotto. Posso sempre usare un Studente dove mi aspetto una Persona (ma non viceversa).
-
-## Polimorfismo
-
-Posso creare piu' implementazioni per uno stesso metodo.
-Si puo' fare con l'`overloading`, permette di creare piu' metodi con lo stesso nome ma con parametri diversi (signature)
-Si puo' fare con l'`ovveriding`: permette di riscrivere l'implementazione di metodi della classe padre (nell'ereditarieta'). Puoi specializzare una stessa operazione.
-
-> Una classe astratta non e' istanziabile (manca qualcosa)
-
-Riusabilita' e estendibilita' (facile da estendere, ottengo mantenibilita')
-
-Il polimorfismo funziona grazie al `late binding` (istanziamento dinamico)
-Esempio lista di figure geometriche: il supertipo e' figura geometrica, si specializzano in figure concrete (quadrato, cerchio, ...).
-Lancio su tutta la lista il metodo rotate(). Il compilatore non sa che metodo specializzato chiamare (se quello del quadrato, del cerchio o altri. Quindi in questo caso si effettua il late binding. A runtime (non compile time) guarda che oggetto e' quello della figura geometrica e lancia il suo metodo rotate() (addirittura quello della classe padre era vuoto (era una classe astratta)).
-
-## Delegazione
-
-Un oggetto delega ad un altro delle operazioni (perche' e' gia' li' e le fa meglio).
-Ad esempio potrei avere una classe String con tante belle utilities per le stringhe.
-Se poi creo una classe Persona che usa diverse stringhe al suo interno (tipo nome, congome) faccio i campi di tipo Stringa, non (char*).
-
-La delegazione si ha anche quando collego uno studente ai suoi esami.
-
-Quindi si verifica sia quando dentro una classe ci metto dentro un altra che mi serve per delegare delle operazioni (tipo Persona e Stringa) oppure si verifica anche quando collego un oggetto ad un altro (tipo dentro uno Studente metto un puntatore a Corso).
-
-* L'associazione (riga 72 di questo file) e' un meccanismo di astrazione che nel paradigma ad oggetti e' implementato dalla delegazione.
-
-
-## Nascita del paradigma ad oggetti
-
-Nasce negli anni 60 coi primi linguaggi talebani della programmazione ad oggetti.
-Poi C++ negli anni 80 che da il via poi a java e python che oggi sono popolarissimi.
-
-L’obiettivo principale dell’approccio orientato agli oggetti (OO, object-oriented) è migliorare la produttività aumentando l’estendibilità e la riusabilità del software e controllando la complessità e i costi della manutenzione.
-
-Dall'approccio funzionale (che abbiamo detto che conviene poco perche' le funzionalita' cambiano spesso nel tempo).
-Si passa dall'approccio ad oggetti.
-
-* ANALISI: va dall’inizio del progetto fino all’analisi delle specifiche utente e allo studio di fattibilità (cosa il sistema deve fare)
-* DESIGN: progettazione logica e fisica del sistema (come lo deve fare)
-* IMPLEMENTAZIONE: scrittura del codice, test di verifica, validazione, manutenzione
-    * I confini tra le fasi non sono più distinti, infatti il centro di interesse è lo stesso: gli oggetti e le loro interrelazioni
-    * Il processo di sviluppo OO è iterativo: si adotta il modello a fontana, in cui lo sviluppo raggiunge un alto livello per poi ritornare a un livello precedente e risalire di nuovo
-    * L’ereditarietà permette di aggiungere nuove caratteristiche a un sistema riducendo i costi di manutenzione (estendibilità), e di costruire nuove funzionalità a partire dall’esistente (riusabilità) riscrivendo solo quella parte di codice inadeguato e solo per gli oggetti che ne hanno bisogno
-
-Una classe in pratica e' un modulo quindi stiamo anche applicando il principio di modularizzazione.
-Il codice si basa sulla parte statica del dominio quindi in genere il codice ha vita piu' lunga.
-
-Diminuiscono i costi di manutenzione.
-Non devo creare ne classi enormi ne classi minuscole. Qual'e' il criterio per decidere? Le classi che creo devono corrispondere ad un elemento del dominio applicativo. (p24 OOAnalisis)
-
-C'erano diversi metodi di programmazione OO che poi hanno dato vita ad UML che ha sostituito tutti gli altri.
-Oggi UML e' l'unico linguaggio che su usa oggi.
-
-
 
