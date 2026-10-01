@@ -243,4 +243,10 @@ Come prima con la interfaccia
 Ora stiamo facendo un paio di esercizi sui casi d'uso.
 Esercizio negozio articoli per la casa. Evidenziamo gli aspetti statici, dinamici o funzionali nel testo.
 
+Ecco gli esercizi:
+
+![Esercizio 1](./es1.jpg)
+
+![Esercizio 2](./es2.jpg)
+
 
