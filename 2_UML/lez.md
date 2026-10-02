@@ -249,4 +249,145 @@ Ecco gli esercizi:
 
 ![Esercizio 2](./es2.jpg)
 
+# 02/10/2026
+
+Oggi vediamo
+
+## Diagramma delle classi
+
+p.38 (19 nel pdf).
+
+Ce ne sono di due tipi: 
+* diagramma delle classi di analisi (alto livello)
+* diagramma delle classi di progettazione (livello piu' preciso, devo prendere delle decisioni per avvicinarmi all'implementazione)
+
+Per molti versi e' piu' importante del diagramma dei casi d'uso.
+Puramente statico (un po' come l'ER di database).
+Descrive la `struttura` del dominio applicativo (no aspetti dinamici).
+
+Come abbiamo gia' detto le specifiche statiche tendono ad essere gli stessi nel tempo.
+Quindi un software che si basa su un diagramma delle classi solitamente vive di piu'
+
+Come abbiamo gia' detto le specifiche statiche tendono ad essere gli stessi nel tempo.
+Quindi un software che si basa su un diagramma delle classi solitamente vive di piu'.
+
+![Classe](./umlClassi.png)
+
+In questo caso ho dichiarato persona come astratto perche' sotto e' sottointesa una gerarchia "is a", quindi la classe astratta ha senso per le gerarchie "is a" (nota che non posso mai istanziare una classe astratta, solo le sue sottoclassi).
+
+> [!NOTE]
+> E' comodo (avere entita' astratte estendibili per gerarchia) grazie al polimorfismo e al late binding.
+
+### Attributi
+
+* Visibilita':
+    * pubblica `+`
+    * privata `-`
+    * protetta `#`
+    * package `~`
+* Molteplicità
+    * per esempio: String \[5], Real \[2..*], Boolean \[0..1]
+* Tipo
+    * Integer, UnlimitedNatural, Real
+    * Boolean
+    * String
+* Ambito
+    * istanza
+    * classe (attributi che in java si chiamano `static`, valgono per tutti gli oggetti) (nella notazione viene sottolineato)
+
+### Operazioni
+
+_`visibilita'` nome (parametro, ...): tipoRestituito_
+            ^                                    ^
+            |             signature              |
+
+Stesso nome ma con input diversi: overloading
+
+---
+
+Le classi si possono fare vedere con diversi livelli di dettaglio.
+
+![Diversi livelli di astrazione](./livelliAstrazione.png)
+
+### Relazioni tra le classi
+
+Ci sono diversi modi per collegare tra loro le classi.
+
+#### Associazioni
+
+Astrazione per associazione: mostrare in che modo sono collegati tra loro oggetti di due classi diverse.
+Sono quasi sempre bidirezionali (non ci sono freccie quindi, una linea solida e basta).
+
+Devi mettere le molteplicita' come nelle ER (cardinalita' minima e massima).
+
+Molteplicita'
+
+* Esattamente 1:        `1`
+* Opzionale 1:          `0..1`
+* Da x a y inclusi:     `x..y`
+* Solo i valori a,b,c:  `a,b,c`
+* 1 o più:              `1..*`
+* 0 o più:              `*`
+
+![Associazioni](./esempioAssociazioni.png)
+
+Si legge: "una persona possiede 0 o piu' case", "una casa e' posseduta da 1 o piu' persone"
+
+Le associazioni devono avere un nome che ne esprima la semantica (il significato).
+
+Si possono aggiungere delle freccie per indicare il verso di lettura (utili anche nelle unarie (vedi dirige)):
+![Verso lettura](./versolettura.png)
+E' un abbellimento in piu' per leggere meglio il grafico. Ben accettate se scritte bene (freccia nera).
+Quando implementerai quindi dovrai creare una classe Persona e una classe Societa' e poi per implementare lavoraPer lo faccio per delegazione:
+Nella classe Societa' posso avere un attributo impiegati che ha i riferimenti alle Persone impiegati.
+
+Poi c'e' anche questa che serve SOLO PER I DIAGRAMMI DELLE CLASSI DI PROGETTAZIONE (NON DI ANALISI (TROPPO SPECIFICI))
+
+![Associazione monodirezionale](./monodirezionale.png)
+
+#### E' possibile specificare vincoli e classi associative:
+
+* ![Or](./or.png)
+    O e' una o l'altra.
+
+* ![Subset](./subset.png)
+    Un comitato ha tanti membri, una persona puo' essere membra di piu' comitati.
+    A capo di un comitato c'e' solo una persona. Una persona puo' essere capo di piu' comitati.
+    La freccia mi dice che le istanze dell'associazione (l'accoppiata degli OID che partecipano alla associazione) "a capo di" sono un subset delle associazioni "membro di" (un capo di un comitato deve essere anche membro di un comitato).
+
+* ![Vincoli inespressi](./vincoliInespressi.png)
+    Una persona o e' disoccupata o lavora al massimo per una azienda.
+    Il post it dice che se una Persona e' capo di un altra allora queste due persone devono essere impiegati della stessa azienda.
+    E' la stessa cosi come quando ti chiedevano di esprimere i vincoli inespressi nelle ER (infatti non useremo i post it ma frasi a fianco in linguaggio naturale).
+
+* ![Classe Associativa](./classeasscociativa.png)
+    Come nelle ER quando hai bisogno di mettere attributi nelle associazioni. Si creano classi associative: disegno una ulteriore classe con dentro gli attributi e poi collego con una linea tratteggiata all'associazione.
+    La linea tratteggiata dice che esiste una associazione 1:1 tra le istanze della classe associativa e le istanze dell'associazione.
+    E' una reificazione. Nelle ER ricorda che quando hai un istanza associazione tra due oggetti (anche se c'e' un'attributo nell'associazione) e vuoi ad esempio mantenere lo storico, devi reificare e aggiungere un attributo data (ad esempio) che fa da chiave (assieme a quelle esterne dei due oggetti).
+    > [!WARNING]
+    > In UML non esiste il vincolo di unicita' delle associazioni!
+    > Quindi l'accoppiata degli stessi OID (in una associazione) puo' apparire piu' volte (nelle ER no obv).
+    > PERO' NEL MOMENTO IN CUI METTI UNA CLASSE ASSOCIATIVA IN UNA ASSOCIAZIONE DIVENTA IDENTICA A QUELLE DELLE ER DOVE NON HAI REIFICATO!
+    > Quindi non posso piu' avere piu' associazioni con gli stessi OID (anche se con date diverse (come ER)).
+
+    Quindi se invece di Azienda avessi Uomo e al posto di Persona avessi Donna e volessi modellare piu' matrimoni tra le stesse persone non basta cambiare Posizione con Data perche' non posso avere piu' collegamenti tra le stesse persone (equivale all'er con un attributo sull'associazione).
+    Quindi per modellare questa cosa devo proprio reificare Data e collegare Uomo e Donna tra di loro passando prima per data (equivale ad una reificazione (forte) nelle ER).
+    
+    > [!NOTE]
+    > La classe associativa poi e' una classe vera e propria, infatti in questo esempio c'e' una associazione _organigramma_ tra Posizioni.
+    > Modella il fatto che la gestione della Posizione e' locale al collegamento tra Azienda e Persona (?).
+
+sono le 15:35, ancora 0 pause me so rotto er cazz.
+Ora stiamo a p46 (23 del pdf)
+
+COn quel diagramma a destra, stiamo dicendo che idSocio e' un campo che fa da chiave per i soci all'interno di un Club (assomiglia agli identificatori nelle ER).
+
+Ora cominciamo le 
+### Associazioni N-arie
+
+Associazione in cui ci sono piu' classi coinvolte. Non sono molto comuni.
+Le associazioni sono ennuple (triple nelle ternarie) di OID.
+
+
+
 
