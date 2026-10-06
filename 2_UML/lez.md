@@ -382,11 +382,81 @@ Ora stiamo a p46 (23 del pdf)
 
 COn quel diagramma a destra, stiamo dicendo che idSocio e' un campo che fa da chiave per i soci all'interno di un Club (assomiglia agli identificatori nelle ER).
 
-Ora cominciamo le 
+Ora cominciamo le
 ### Associazioni N-arie
 
 Associazione in cui ci sono piu' classi coinvolte. Non sono molto comuni.
 Le associazioni sono ennuple (triple nelle ternarie) di OID.
+
+#### 06/10/2026
+
+Ora iniziamo le N-arie.
+Coinvolgono 3 o piu classi. Corrispondono a triple (quadruple, ...) di OID.
+Una ternarie e' falsa se ce' un ramo con molteplicita' 1 (potrei usare 2 binarie). Molteplicita' di 'andata' si intende, cioe' quelle che partono da una classe e vanno alle altre n-1.
+Si assume che le ternarie siano sempre vere, quindi le molteplicita' sono sempre ad asterisco (quindi si omettono).
+![Ternaria](./ternaria.png)
+Quindi tutte le molteplicita' di andata sono *, infatti a un AUla corrispondono tanti corsi e GiorniEdOre.
+Per capire se una ternaria e' una vera ternaria quindi devo guardare le molteplicita' di andata.
+Quelle che sono disegnate li' allora sono molteplicita' di ritorno. Ad esempio perche' su GiornoEOra c' *?
+Immagina di fissare un Aula e un Corso, si possono verificare in giorni diversi, quindi ci va *. Tipo IngSW in aula 3.4 c'e' sia il martedi' che il venerdi'.
+
+In questo caso c'e' anche la classe associativa. Il vincolo che non si possono ripetere le triple non mi turba perhce' tanto data un aula, un corso e un orario ho solo una lezione.
+
+## Elementi derivati
+
+Un elemento derivato puo' essere calcolato a partire da un altro ma viene mostrato comunque per motivi di chiarezza.
+![Elemento derivato](./elderivato.png)
+Devi fare calcoli simili a quelli per la ridondanza in ER.
+
+Si puo' fare anche per le associazioni:
+![Altro elemento derivato](./ridondanza.png)
+(Li c'era scritto Person.employer)
+Invece di fare il giro lungo per vedere se una persona lavora in una azienda puoi vedere l'associazione ridondante cosi' risparmi di fare il giro lungo.
+
+Attenzione quando crei un ciclo di solito hai creato una ridondanza. Significa che anche se la togli non perdi niente.
+
+## Aggregazione
+
+Rombo bianco - aggregazione debole, il composto non possiede le parti, il composto e le parti esistono lo stesso
+Il tutto `NON` possiede le sue parti.
+
+Vedi p49
+
+E' diversa da:
+## Composizione PART OF
+Il tutto `POSSIEDE` le sue parti.
+Nel rombo nero ci va sempre 1 sul rombo
+
+(quel diagramma "finestra" ci sta che lo vedi ma non lo useremo)
+
+### Se sono in un diagramma di progettazione dico anche delle cose al programmatore:
+
+Quando hai il rombo bianco dici anche al programmatore di connettere le classi per delegazione con un riferimento.
+
+Se invece ho il rombo bianco dentro la classe esterna devo avere classi interne.
+
+## Generalizzazione
+
+E' supportata anche l'ereditarieta' multipla.
+Non capitera' spesso nelgi esercizi.
+
+Nell'esempio di veicolo, camion e barca ci sono 2 gerarchie di veicolo.
+Sono specificati infatti 2 diversi insiemi di generalizzazione, una gerarchia e' sulla propulsione e l'altra e' sul suo utilizzo.
+Nelle parentesi graffe metti i vincoli, in questo caso ci va disjoint, overlapping, complete o incomplete.
+
+## Classi Astratte
+
+Definiscono comportamenti comuni alle sottoclassi:
+Uso quindi ereditarieta' e polimorfismo con il late binding.
+Estendibilta' e riusabilita': si adatta bene a cambiamenti futuri.
+
+## Powertyping
+
+Un'altra bella bega...
+
+Nell'esempio di pag 55 dove metteresti l'attributo prezzo? In articolo. 
+Dove metteresti processore, 5G o 4G, impedenza? Nelle sottoclassi.
+Invece se dovessi mettere un attributo sconto che dipende dal tipo di articolo? Eh eh, non posso metterlo nelle sottoclassi perche' poi pc diversi possono avere sconti diversi ma io ho detto che voglio uno sconto uguale per tutti i pc (dipende esclusivamente dal tipo di articolo).
 
 
 
