@@ -454,9 +454,127 @@ Estendibilta' e riusabilita': si adatta bene a cambiamenti futuri.
 
 Un'altra bella bega...
 
-Nell'esempio di pag 55 dove metteresti l'attributo prezzo? In articolo. 
+Nell'esempio di pag 55 dove metteresti l'attributo prezzo (dipende solo dall'articolo)? In articolo. 
 Dove metteresti processore, 5G o 4G, impedenza? Nelle sottoclassi.
 Invece se dovessi mettere un attributo sconto che dipende dal tipo di articolo? Eh eh, non posso metterlo nelle sottoclassi perche' poi pc diversi possono avere sconti diversi ma io ho detto che voglio uno sconto uguale per tutti i pc (dipende esclusivamente dal tipo di articolo).
+
+# 09/10/2026
+
+Torniamo al powertyping.
+Potresti semplicemente creare una associazione tra Tipo e Articolo ma non sarebbe vincolato in nessum modo ai sotto tipi.
+E' qui che entrano in gioco i Powertype
+![Powertype (BTW NOI USIAMO LA NOTAZIONE DI UML 2)](./powertype.png)
+E' una `metaclasse`: le sue istanze sono altre classi.
+Le istanze di TipoArticolo in questo caso sono HiFi Telefonia e PC.
+E' paragonabile all'attributo static di java (in che modo?)
+
+## Dipendenze
+
+In generale, A dipende da B quando una variazione in B può comportare una variazione in A
+NON LE USIAMO NEGLI ESERCIZI (nei quiz si suppongo).
+parameters e uses (?)
+
+## Template
+
+NEANCHE QUESTO LO USEREMO (puo' comunque comparire nei quiz)
+E' una classe parametrizzata
+
+Nell'immagine
+Si crea un template generale e in basso a destra ti fa vedere come si istanziano i parametri (in basso a sinistra c'e' una versione alternativa).
+Che senso ha il template? serve per riusare una stessa classe 
+Bind e' una `dipendenza` stereotipata.
+
+## Raffinamento
+
+Anche questo solo nei quiz.
+Esprime una relazione tra due descrizioni dello stesso concetto a diversi livelli di astrazione:
+![Raffinamento](./raffinamento.png)
+Due semantiche leggermente diverse: raffinamento e `realizzazione`
+
+## Interfaccia
+
+Il comportamento che la classe espone all'esterno, l'insieme delle operazioni pubbliche dell'oggetto.
+E' rappresentata come una classe senza struttura, solo COMPORTAMENTO.
+Non avendo struttura e' una classe ASTRATTA, quindi non istanziabile.
+![Interfaccia](./interfaccia.png)
+La freccia tra arrayStack e Stackable e una freccia di raffinamento di REALIZZAZIONE (non raffinamento e basta).
+La classe Calcolatrice e' collegata a Stackable con una dipendenza. Infatti calcolatrice al suo interno usera' una classe Stackable.
+L'interfaccia fa da separazione dalle classi che usano funzionalita' di altre classi (no aspe me so perso...)
+
+Sotto c'e' la stessa cosa con una notazione molto piu' semplificata, ma sono la stessa cosa.
+
+### INterfaccia VS ereditarieta'
+
+La biblioteca presta libri e cd ma non riviste
+![](./intVSere.png)
+
+Quello di destra e' preferibile: Nella analisi ad oggetti non e' buona pratica avere gerarchie profonde.
+L'altro motivo e' che essere prestabile e' una caratteristica di comportamento. Quella di destra ti fa vedere che alcune espongono l'interfaccia prestito e altre no.
+
+# Diagrammi di ANALISI e di PROGETTAZIONE
+
+Le classi di Analisi sono un po' piu' astratte, lvl un po' piu' alto, piu' vicino al dominio che al codice.
+Noi disegneremo soprattutto diagrammi di Analisi (non solo).
+
+## Come si disegna un diagramma di ANALISI?
+
+Come nelle ER puoi sottolineare i nomi del testo e quelli _probabilmente_ sono classi.
+
+* NON DEVI DISEGNARE SOLUZIONI IMPLEMENTATIVE.
+![alt text](./noIMPL.png)
+
+* Evita classi ridondanti, irrilevanti o vaghe.
+Quando credi di fare classi vaghe prova ad instanziarle e vedere se ha senso.
+
+* Evita classi onnipotenti che fanno un sacco di roba.
+
+* Evitare di avere poche classi troppo complesse, ma anche tante classi troppo semplici
+
+* Una classe è associata a un piccolo e ben definito insieme di responsabilità (normalmente tra 3 e 5)
+![alt text](./responsabilita.png)
+
+* Nessuna classe puo' essere isolata.
+
+* Il nome deve essere espressivo, deve riflettere la natura intrinseca dell'oggetto e `non il ruolo` nell'associazione
+![alt text](./nomi.png)
+
+* Evitare le gerarchie di specializzazione profonde
+
+* I nomi che descrivono oggetti dovrebbero essere espressi come attributi
+![Questa e' abbastanza autoesplicativa](./nomiattributi.png)
+Dai devi fare gli stessi ragionamenti delle ER.
+
+* Se una proprietà esiste indipendentemente, o compare più volte all’interno del diagramma, dovrebbe essere espressa come classe
+![alt text](./ovvio.png)
+Vabbe' zioca ci arrivi...
+
+Diobo non fa pause... abbiamo fatto pag 67 e 68... per ora sotto controllo ma non riesco a scrivere
+
+Nel diagramma corretto dell'esempio p68 con la biblioteca, ci andrebbe un rombo tra biblioteca e libro.
+
+* Evita le associazioni derivate... se proprio vuoi farlo le segni come derivate con lo `\`. 
+    (stessa cosa con gli attributi (p70))
+
+* Quando appropriato specifica i ruoli.
+
+* non servono gli id (c'e' gia' l'OID gratis)
+
+L'analisi procede per raffinamenti progressivi. Non arrivi la soluzione in una sola botta.
+
+# Esercizio "si vuole automatizzare il sistema di gestione degli animali in uno zoo..."
+
+Ricorda, e' simile alle ER ma non del tutto uguale... pensa alle classi che faresti in java...
+Si, in poche parole devi fare anche la classe Zoo.
+
+Rombo bianco tra Zoo e Animali... se chiude lo zoo gli animali rimangono indipendentemente dallo zoo.
+Poi per il codice metto il `qualificatore` su genere.
+
+Rombo nero tra Zoo e Area... se sparisce lo zoo anche le aree spariscono. Stessa identica cosa tra Area e Casa.
+Poi collego Casa e Genere e ci scrivi "destinata a".
+Poi ancora un'altra composizione Casa e Gabbia con rombo nero.
+
+In ogni Gabbia ci sta un esemplare, ergo collego gabbia a esemplare ATTENZIONE PERO' si forma un ciclo: e' una associazione DERIVATA, metti lo \.
+ACTUALLY non e' l'associazione tra gabbia e animale che rischia di essere ma quella tra Animale e genere. 
 
 
 
