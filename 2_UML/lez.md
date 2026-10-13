@@ -574,8 +574,92 @@ Poi collego Casa e Genere e ci scrivi "destinata a".
 Poi ancora un'altra composizione Casa e Gabbia con rombo nero.
 
 In ogni Gabbia ci sta un esemplare, ergo collego gabbia a esemplare ATTENZIONE PERO' si forma un ciclo: e' una associazione DERIVATA, metti lo \.
-ACTUALLY non e' l'associazione tra gabbia e animale che rischia di essere ma quella tra Animale e genere. 
+ACTUALLY non e' l'associazione tra gabbia e animale che rischia di essere derivata ma quella tra Animale e genere. 
+
+# 13/10/2026
+
+Finiamo l'esercizio dello zoo.
+Ogni casa, ogni giorno, ha solo 1 addetto che la pulisce -> creo la classe Addetto, la collego con Casa e poi metto un attributo su Gabbia, GiornoDIPulizia.
+
+Gli animali sono sottoposti periodicamente a controllo veterinario -> Creo la classe Veterinario, e faccio associazione Veterinario e Animale, poi potrebbe venirmi in mente di fare una classe associativa per memorizzare cose sul controllo, ma visto che lo stesso vet puo' visitare lo stesso animale mi serve reificarla: creo anche la classe COntrollo interposta tra Vet e Animale.
+
+Ora facciamo diagramma dei casi d'uso:
+Chi sono gli attori? (classi con comportamento attivo) Sono Veterinario, Animale e Addetto. Quindi faccio 3 omini con questi nomi sopra.
+POi fai il rettangolone con scritto Zoo e dentro ci metterai i casi d'uso
+Che casi d'uso ci sono? Visita (da collegare a Veterinario e Animale); Pulizia (da collegare a Addetto, e' un diagramma statico, non ci va gabbia).
+    Poi vogliamo enfatizzare che si fa rilevazione peso e prescrizione dieta: faccio altri due casi d'uso che collego a Vet e Animale.
+    POi visto che la rilevazione del peso e' fatta in una visita faccio una freccia (dipendenza) <<\include>> tra visita e Rilevazione peso (stessa cosa per Prescrizione dieta)
+
+## Esercizio museo
+
+Un museo si compone di diverse sezioni, ciascuna comprendente un certo numero di sale -> creo Museo, Sezione, Sala;
+Ogni sezione ha un orario di visita ed e' custodita giornalmente da un solo custode, nel rispetto di un turno settimanale che resta invariato per tutto l'anno; il turno definisce per ciascun custode la sezione di cui si deve occupare in ciascun giorno della settimana -> Creo Custode che collego a Sezione, potrebbe venirmi in mente una classe associativa ma no buono, allora reifico e creo Turno interposto tra Custode e Sezione.
+    Attenzione, anche la soluzione di reificare non va bene (perche?). Allora proviamo una associazione Ternaria.
+
+ho dormito un po'
+
+---
+
+Ok esercizio finito. TOrniamo alla teoria.
+
+## Diagramma di progettazione
+
+Siamo a p74.
+Identificae le classi di progettazione vuol dire identificare quelle classi che poi verranno effettivamente realizzate.
+
+Identificare le associazioni di progettazione e' un po' piu' difficile. p76 Vediamo qualche esempio... (traduzione diagramma analisi a progettazione)
+La soluzione in alto a sinistra e' completa? (puoi risolvere anche la query inversa? data una azienda puoi scoprire i suoi dipendenti?)
+    In questo caso e' molto facile dire ogni persona per che azienda lavora ma per vedere chi lavora per una azienda devo vedere tutti i dipendenti di tutte le aziende e contare solo quelli appartenenti a una data azienda. Quindi la soluzione e' completa ma la query inversa e' molto piu' dispendiosa.
+La soluzione di destra anche e' completa ed e' piu' adatta a fare la query che prima dicevamo che era inversa.
+
+Sono due soluzioni perfettamente valide che sono adatte a due diversi carichi di lavoro.
+Ma se il carico di lavoro e' bilanciato? Se chiedo sia la query diretta che inversa molto di frequente allo stesso modo?
+Beh EASY faccio tutte e due le cose facendo una ridondanza (e' la soluzione in basso).
+Il problema delle ridondanze e' soprattutto che rischi di avere inconsistenze. (non solo memoria in piu')
+Ma grazie all'`incapsulamento` so che queste modifiche le faccio con dei metodi che toccano (solo loro) queste classi.
+
+P.77
+Le associazioni 1 a 1 possono essere collassate (mergiate) le due classi.
+Per le associazioni ternarie invece devi per forza reificare e creare una quarta classe.
+Anche in questo caso il modo di tradurre dipende dai volumi di carico di lavoro: in alcuni casi posso aggiungere riferimenti ridondanti per semplificare alcune operazioni.
+Ad esempio se avessi una query "data un aula dire se c'e' una lezione" allora la soluzione a destra e' preferibile.
+
+p78
+Per le classi associative invece
+La seconda soluzione suppone che ci sia anche un'altra query frequente: "che (quante) forniture ho per una data parte?". Se avessi aggiunto anche "e che fornitori?" avrei dovuto aggiungere anche un'altra ridondanza.
+
+### Esercizio sui diagrammi di progettazione
+
+Ti sara' dato il diagramma di analisi e un carico di lavoro e tu devi tradurre.
+Step 1 copia tutte le classi.
+Poi ci serve una classe contenitore (e' un ogetto che serve per raggiungere ttuti gli altri oggetti del dominio) che in questo caso non abbiamo: Aggiungiamo la classe Banca (che sara' istanziata da un solo oggetto).
+Step 2: ordiniamo le query per ordine di frequenza e poi le analizziamo. La query A e' la piu' frequente. Calcolo saldo finale a partire...
+Trova il punto di entrata della query e ottimizzalo solo se e' alta frequenza. Verifica che puoi raggiungere tutti gli oggetti a partire dal contenitore.
+Collego banca a Estratto Conto con rombo bianco e poi ancora, Estratto Conto a Movimento sempre con rombo bianco (composizione?). Le cardinalita' le copi dal diagramma di analisi.
+La prossima query e' la C: Il punto di entrata di questa query e' il Conto. Quindi collego Banca a Conto (sempre rombo bianco). POi da Conto collego a Cliente. Poi da CLiente (ripartendo da Banca) dvrei arrivare a Estratto Conto ma NON POSSO creare una associazione diretta tra i due perche' nel diagramma di analisi non c'era! Quindi Collego Cliente anche "all'indietro" a Conto. Quindi adesso avrei una ridondanza, la domanda e': Se i riferimenti in rosso non li creo (ridondanti?) (vedi foto), riesco comunque a rispondere alla query?
+
+Se il diagramma di analisi avesse uno zero in "intestato a" (sopra) allora avrei dei clienti senza conto e quindi non potrei raggiungere alcuni clienti. Quindi avrei bisogno di altre associazioni tra Banca e Cliente.
+
+### Esercizio progettazione Ditte
+
+Il contenitore in questo caso non c'e', lo creo (non c'e' bisogno di mettere un nome). Ora copio le classi e ordino le query per frequenza.
+La piu' frequente e' la A: "per una data Ditta stampa di tutti gli ordini coin stato "Evaso" includendo i dati angrafici dell'intestatario...
+    La classe di entrata e' Ditta, da DIitta devo andare a Cliente (non posso andare direttamente a Ordine perche' non c'era nel diagramma di analisi). Da Cliente poi vai in Ordine (devi sempre usare rombi bianchi). Metto anche le molteplicita'. Poi da Ordine devo andare anche a Per e poi a Prodotto mettendo le cardinalita' che sono scritte nel diagramma di analisi.
+
+B: "Stampa per ciascun prodotto..." Ora sta facendo le associazioni in rosso (sono possibilmente ridondanti) ma mi sa che le tiene.
+Step finale verifica che puoi raggiungere tutti gli oggetti a partire dal contenitore.
+I clienti li raggiungamo tutti perche' ogni cliente e' di una ditta e quindi si. Devi vedere se ci sono delle opzionalita'.
+Ma se arrivi a Prodotto noti che non tutti i prodotti sono collegati a Per (Ordine) e quindi il collegamento in rosso che dicevamo prima mi serve e lo faccio diventare nero (gli altri rossi li toglie).
+
+La meno frequente in genere non va ottimizzata. Con questa soluzione infatti la B e' eseguibile ma non e' immediata.
 
 
+
+OK ultimi 5 minuti, vediamo il diagramma degli oggetti
+## Diagramma degli oggetti
+
+E' una istanza del diagramma delle classi. Non si usa di frequente, serve al programmatore per capire bene come istanziare.
+A p79 vedi 3 esempi.
+_:Poligono_ e' un modo per dire una qualsiasi classe di tipo poligono.
 
 
