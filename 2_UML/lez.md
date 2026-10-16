@@ -662,4 +662,119 @@ E' una istanza del diagramma delle classi. Non si usa di frequente, serve al pro
 A p79 vedi 3 esempi.
 _:Poligono_ e' un modo per dire una qualsiasi classe di tipo poligono.
 
+# 16/10/2026
+
+Partiamo dal diagramma degli oggetti p80 e proviamo a ricostruire il diagramma delle classi che lo ha partorito (reverse engineering).
+
+C'e' una classe club e una classe persona.
+In Club (essendoci li tesoriere e presidente (che sono valori specifici di un qualificatore)) ci va qualificatore (metti un rettangolino attaccato a Club con scritto dentro Ruolo) Ruolo.
+Come si traduce la parolina ufficiale e membro ? Mi dice che un ruolo e' un ufficiale?
+Ho scritto l'esercizio nel eink.
+
+## Diagramma dei package
+p81
+
+I package sono insiemi di cose che fanno operazioni simili.
+Ci sono 3 tipi di relazioni tra package:
+* boh
+* lo stereotipo <<trace>> collegam un diagramma di progettazione a uno di analisi (?)
+* p83: Il nucleo windows specializza il nucleo grafico. Le dipendenze non sono stereotipate quindi e' una dipendenza "use" -> il nucleo grafico usa quello windows.
+
+Non li disegnamo ma possono essere nei quiz.
+
+Spesso si usano nelle fasi iniziali dell'analisi per strutturare i componenti del software (senza irrigidirsi facendo un diagramma dei componenti che e' piu' formale).
+
+Esercizio dell'autenticazione con spid e con ...
+La seconda dal basso e' sbagliata perche' vuol dire che l'autenticazione chiama sia l'una che l'altra... no
+La terza e' sbagliata (why?)
+la quarta e' giusto ed e' una gerarchia "is a" (right?)
+
+## Diagrammi di Interazione
+
+si chiamano cosi' perche' mostrano la sequenza di interazione tra oggetti durante il funzionamento del sistema.
+Le interazioni sono i messaggi che si mandano gli oggetti per realizzare un caso d'uso.
+
+Ce ne sono di 4 tipi:
+* Diagramma di sequenza: ordinato in ordine temporale
+* Diagramma di inderazione: porta in primo piano "chi parla con chi";
+* gli altri due diagrammi sono poco utilizzati
+
+### Diagramma di Interazione di Sequenza
+
+Puo' essere nel compito da disegnare (anche se a lui non piace e quindi non spesso).
+Una interazione e'
+
+Una `linea di vita` in pratica e' un oggetto (ma non proprio).
+
+Si mostrano le interazioni tra linee di vita.
+Quindi interazioni tra oggetti che si scambiano messaggi.
+
+Le linee di vita si dispongono in alto nel diagramma e con la sintassi dei classificatori.
+Non ho piu' voglia di fare screenshot (ma ti dico le pagine). E' a pagina 87.
+In questo esempio ho una classe Conto. Nel secondo esempio ho una classe Persona e l'oggetto gianni che la istanzia...
+Gli ultimi due esempi non li usiamo.
+
+La linea tratteggiata rappresenta la linea di vita. Rappresenta che l'oggetto c'e', e' vivo, esiste... e interagira' con altri modi.
+
+Ci sono diversi messaggi che si possono mandare gli oggetti:
+* Di chiamata: un oggetto chiama una funzionalita' di un altro oggetto. Possono essere sincroni o asincroni;
+    I sincroni si fanno con una freccia nera e dicono che quando chiamo aspetto la risposta e mi fermo nel frattempo (useremo soprattutto questi).
+    Gli asincroni invece dicono che quando l'oggetto chiama una funzionalita' di un altro continua a fare 
+* Di ritorno: lo manda l'oggetto di cui qualcuno ha chiamato una funzionalita' e serve per fare il return (dire che hai finito e restituire il risultato)
+* Messaggi di creazione: si fanno con lo stereotipo create: si crea un istanza
+* Messaggi di distruzione: si dice a un oggetto di distruggersi
+
+Tutti questi elementi li combino in un diagramma di sequenza.
+Ha due direzioni: nella verticale si ha il tempo, il susseguirsi di operazioni (piu' in alto e' prima). Nell'orizzontale(?)
+
+#### Esempio p90
+Ci sono 3 line di vita, la prima e' una istanza del classificatore utente che vedendo l'omino vediamo che e' un attore.
+:Utente significa che e' un oggetto qualsiasi della classe utente.
+Poi abbiamo una istanza di prestito
+e infine la linea di vita di una istanza della classe libro (che ha come titolo "UML").
+
+Il primo oggetto che si attiva e' utente (lo vedi dal rettangolo bianco).
+L'utente per prima cosa invoca richiedi("UML") (chiama richiedi passandoci dentro UML (vuole quel libro)).
+Manda un messaggio sincrono, quindi resta in attesa e quindi il rettangolo bianco rimane (e' attivo).
+Quando l'oggetto richiesta prestito riceve la chiamata si attiva, inizia il rettangolo bianco. 
+L'attivazione annidata che vedi poi significa che richiestaPrestito manda a se stesso un messaggio dicendo trova("UML").
+L'oggetto poi viene trovato, trova("UML") ritorna. A questo punto richiestaPrestito manda un messaggio al Libro UML chiamando in Prestito.
+Il libro allora crea un oggetto Prestito e iniziano i messaggi di ritorno a cascata.
+
+Si possono anche non disegnare le attivazioni ma sono caldamente consigliate.
+
+#### Esempio p92
+
+Come implementare Undo Redo? Ogni tanto faccio una "foto" allo stato del mio programma e lo metto in uno stack (me ne serve uno per i Redo e uno per i Redo).
+In questo diagramma di sequenza e' mostrato come fare cio' in un programma tipo per disegnare.
+
+Appena faccio una modifica al disegno (supponiamo) lo SchemeDoc (il documento) si duplica e crea una copia del suo stato prima che faccio la modifica.
+Poi il Doumento (SchemeDoc) chiama l'UndoRedoManager e gli dice di salvare la copia appena creata.
+Cosa fa allora il Manager? Rimuove la lista dei Redo (si hai presenti che la perdi se fai una nuova modifica dai)
+
+A un certo punto poi (piu' avanti nel tempo infatti il rettangolo e' interrotto) faccio un Undo.
+
+#### Esempio p93
+
+Il vincolo (indicato dalla freccia rossa) cosa esprime? Dice che quando cliente crea un Ordine e poi Paga poi l'ordine viene consegnato.
+Il vincolo dice che tra il pagamento e la ricezione non devono passare piu' di 28 giorni.
+
+I rettangoli arrotondati rappresentano degli stati. In questo caso l'oggetto della classe Ordine cambia stato nel tempo si vede.
+
+===
+
+#### Esempio p94
+Mi sono perso 3 minuti...
+il diagramma p 94 mostra dei frammenti combinati: il primo dice che se la condizione e' vera A manda un messaggio a B.
+La seconda invece E' tipo uno switch dai si capisce (piu' che switch degli if a cascata).
+
+#### Esempio p95
+A p95 la classe Distributore ha 2 istanze.
+L'interazione viene innescata dall'ordine (il pallino nero permette di non disegnare l'utente che manda il messaggio dispatch all'ordine).
+Ho un ordine con tanti elementi quindi ho un loop, se l'elemento dell'ordine ha valore oltre 10K allora scelgo il distributore careful altrimenti l'altro.
+Infine se serve una conferma allora si manda anche un messaggio.
+
+
+
+Ora facciamo un esercizio su un diagramma di sequenza che faro' nell'eink
 
