@@ -778,3 +778,36 @@ Infine se serve una conferma allora si manda anche un messaggio.
 
 Ora facciamo un esercizio su un diagramma di sequenza che faro' nell'eink
 
+# 20/10/2026
+
+10:50 Prima abbiamo fatto esercizi
+
+## Diagramma degli STATI
+
+E' il diagramma dinamico per eccellenza.
+Stati in cui si trovano gli oggetti.
+
+Lo `stato` di un oggetto e' l'astrazione dei valori dei suoi attributi (e dei suoi collegamenti (pensa marito e moglie, sono collegati (stato sposati))).
+Gli stati cambiano con gli `eventi`. UML usa la Notazione di Harel
+Gli eventi si assumono come istantanei (non interrompibili).
+
+Lo stato si rappresenta con un rettangolo stondato, in alto ci va il nome dello stato.
+Dento al rettangolo ci va tra le altre cose, una `attivita'` che e' la cosa che fa l'oggetto mentre si trova in quello stato.
+Le transizioni tra stati si rappresentano con una freccia a cui devi associare un evento scrivendocelo sopra.
+Le transizioni possono avere anche una condizione (Event Condition Action) -> quando accade l'evento, SE LA CONDIZIONE E' VERA, allora accade l'azione.
+Sopra la freccia si scrivono cosi': `evento(parametri) [condizione] /azione`
+
+L'azione si puo' riportare nello stato di arrivo (dopo entry)
+Negli stati puoi anche scrivere l'evento scritto nello Stato invece che nella freccia.
+Ci sono 
+
+Il pallino nero serve solo a collegare piu' freccie insieme (in UML 1 non c'era neanche, non e' che mi sembri molto utile)
+Il pallino grande e' il punto di ingresso.
+Il pallino con il cerchio fuori significa l'attivita' che termina, cancelli tutto.
+
+### TIpi di Eventi
+
+* Eventi di Chiamata: lo hai quando all'oggetto arriva un messaggio. Un modo comunissimo per cambiare lo stato a un oggetto e' mandargli un messaggio. E' una operazione dell'oggetto
+* Eventi temporali: when specifica il moemnto della transizione; after(10 seconds) significa "esci dallo stato dopo 10 secondi"
+
+ora un paio di esercizietti oink
