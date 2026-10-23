@@ -811,3 +811,21 @@ Il pallino con il cerchio fuori significa l'attivita' che termina, cancelli tutt
 * Eventi temporali: when specifica il moemnto della transizione; after(10 seconds) significa "esci dallo stato dopo 10 secondi"
 
 ora un paio di esercizietti oink
+
+# 23/10/2026
+
+Prima esercizietto adesso p102.
+Stati compositi. 
+Decomposizione OR = quando l'oggetto e' nel superstato l'oggetto e' in uno o nell'altro dei sottostati.
+Li usiamo quando in un esercizio ti dice iuna cosa del tipo "in qualunque stato si trovi il macchininon del caffe, quando clicchi il tasto off si spegne", in questo caso posso raggruppare tutti gli stati che hanno lo stesso conporamento rispetto a un evento (ad esempio quella dell'esempio sopra).
+
+Stato composito ortogonale (Decomposizione AND): quando l'oggetto si trova nel superstato puo' trovarsi contemporaneamente in piu' sottostati. Permetti di modellare specifiche di parallelismo.
+Nell'esempio si vede che l'esame ha 3 stati, incompleto, superato, fallito.
+Quelle 3 file dentro a Incompleto sono concorrenti (non ci sono vincoli di precedenza tra l'uno e l'altro) (non c'e' propedeuticita').
+
+A p104 vedi che puoi usare una variabile di un altro sottoevento per delle condizioni in un altro sottoevento.
+
+Ora facciamo un quiz su un diagramma (sempre negli esercizi di virtuale).
+Ci ho anche fatto una foto, mi e' sembrato abbastanza semplice.
+
+Ora torniamo sull'oink
