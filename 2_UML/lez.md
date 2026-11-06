@@ -829,3 +829,36 @@ Ora facciamo un quiz su un diagramma (sempre negli esercizi di virtuale).
 Ci ho anche fatto una foto, mi e' sembrato abbastanza semplice.
 
 Ora torniamo sull'oink
+
+** CRedo di avere un buco di una lezione (diagramma delle attivita'?) **
+# 06/11/2026
+
+Li facciamo un po' velocemente, solo sui quiz.
+
+### Diagramma dei componenti
+
+Mostrare i componenti e le loro dip (?)
+
+E' prettamente statico.
+
+Le linee tratteggiate definiscono dipendenze di un componente da un'altro
+
+### Diagramma di deployment
+
+Specifica l'hardware su cui verra' eseguito il software e il modo in cui il software e' dislocato sull'hardware.
+
+Puo' essere sia descrittore che un'istanza (un esempio 'vero' del descrittore).
+
+Esempio p117.
+Sul server e' installata quella libreria .jar che implementa la Libreria <<component>> (l'<<artifact>> implementa il <<component>>)
+
+Esempio p118.
+Ci sono dei PCclient che sono collegati tutti al server; alcuni PC client sono AdminPC e se lo sono sono collegati a una backup station.
+
+
+---
+
+Stiamo tirando le somme sull'uml:
+Ha messo fine al casino di metodi che c'erano prima.
+Puo' essere personalizzato (noi abbiamo visto gli stereotipi)
+
