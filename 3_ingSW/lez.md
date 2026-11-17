@@ -261,8 +261,83 @@ Non potro' mai testare ogni singolo caso del mio software. Posso testare solo un
     Ci sono diversi livelli di testing in the small:
     * [Statement test]: Almeno devo cercare di mettere in esecuzione ogni singola riga di codice almeno una volta.
         Cio' non significa che trovo gli errori ma almeno devo vedere tutto in esecuzione, mi sembra il minimo.
-    * [Branch test]: Non basta solo mettere in esecuzione ogni istruzione almeno una volta. Devo coprire anche tutte le guardie almeno una volta.
+    * [Branch test (copertura delle decisioni)]: Non basta solo mettere in esecuzione ogni istruzione almeno una volta. Devo coprire anche tutte le guardie almeno una volta.
         Se c'e' un if then (anche senza else!) devi farlo fallire anche! (invece nello statemnt test ti basta entrare nel then, tanto esegui tutto)
         Non basta passare tra tutti i nodi, devi anche passare per tutti gli archi.
-    * [Criterio di copertura delle decisioni e delle condizioni]: nn h cpt.
+        > [!NOTE]
+        > copre anche quello prima (e' un sovraset)
+    * [Criterio di copertura delle decisioni e delle condizioni]: in presenza di booleani composti devi valutare ogni booleano semplice a true e false almeno. Cioe' credo di aver capito che in un if con 2 condizioni ad esempio devi provare a metterle entrambe a false e entrambe a true almeno 1 volta
 * Testing in the large: definisco degli scenari globali e vedo se funzionanan
+
+# 17/11/2026
+
+Testing in the large: e' black box, non c'e' bisogno di conoscere il software, butti dentro degli input e valuti gli output.
+E' importante capire quale potrebbero essere 
+Il diagramma dei casi d'uso e' utile per capire che scenari di test testare.
+
+* Test di modulo: testo un modulo (unit test)
+* Test d'integrazione: provo un po' di moduli insieme, collaborano bene? le interfacce sono giuste?
+* Test di sistema: verifico il comportamento dell'intero sistema sulla base del suo comportamento esterno.
+
+Questi test sono piu' diffusi del testing in the small.
+
+### Testing Statico (Analisi del Software)
+
+Sono tecniche white box (si presuppone che tu conosca il codice).
+
+* Code walk-through: leggi il codice e con la nostra esperienza simuli il funzionamento del software senza dare neanche input.
+    E' un lavoro che si fa in team e si focalizza nel cercare errori nel software.
+* Code Inspection: leggi il codice sempre leggendolo ma guardi per un particolare tipo di errore come variabili non inizializzate, loop infiniti, letture di dati non allocati, ...
+
+#### Code inspection: Analisi di flusso di dati
+
+Prendi una variabile e ne studi il comportamento all'interno di una parte di codice.
+Posso associare ad una variabile a una stringa che ne modella il suo uso dinamico.
+Quando la definisco (assegno un valore) scrivo `d`, quando la uso scrivo `u`, quando la annullo `a`.
+
+La sequenza [au] e' a rischio perche faccio un uso dopo avere annullato una variabile...
+
+Anche la sequenza [dud] potrebbe essere no buona: che senso ha definire anche alla fine la variabile anche se poi non la uso.
+Anche la sequenza [ddd] no buono, fai solo definizioni ma 
+
+Ci sono un paio di sequenze di lettere che sono ovviamente sbagliate;
+Pero' e' anche vero che in alcuni casi potrebbero essere giuste anche se di solito la regola ti direbbe di no...
+
+Esercizio: d (read(a) significa che scrivo a), u (nell'if uso a per fare un check), ud (uso a per definire a), u (print(a))
+=> duudu
+Con questa stringa ovviamente non c'e' nessun problema.
+
+consiglio di bartoli: jane birkin - di doo dah
+> [!NOTE]
+> Nel compito ci puo' essere calcolo numero ciclomatico,
+> testing in the small
+
+## Certificazione
+
+Se la software house produce del software conformemente a una normativa.
+Devi esporre tutta una documentazione che spiega in che modo hai seguito la normativa: il `manuale di qualita'`
+Mando il manuale a un ente certificatore che si occupa di verificarlo e di appurare che ci sia conformita'.
+Se sono rifiutato posso ripartire con l'iter.
+Sono proviste delle visite dell'ente certificatore per ispezionare che sia tutto vero...
+E poi ci sono anch delle visite successive (alla accettazione) di sorveglianza.
+
+Nel manuale di qualita' devi metterci tanti docmunenti tecnici diversi.
+Ad esempio diagrammi di UML (se li hai fatti) vanno qua.
+
+Nel 2000 e' stata riformata questa normativa (ISO 9000 -> ISO 9001 (detta Vision 2000))
+
+## Manutenzione
+
+Ovviamente e' motlo importante, e' una delle fasi del ciclo di vita del software piu' costose.
+Manutenzione:
+* Correttiva: rimedio a eventuali malfunzionamenti, oppure avevi specificato una funzionalita' che alla fine non hai fatto perche' non avevi tempo, e' come se ci fosse un errore nel programma allora, lo devi correggere.
+* Adattiva: sono cambiate le condizioni (magari e' uscita una nuova legge) (non del cliente eh!) devo correggere... magari c'erano le lire e siamo passati agli euro...
+    La paga la software house (di solito)
+* Perfettiva: miglioro certe caratteristiche, senza aggiungere funzionalita' ma solo migliorando l'efficienza ad esempio.
+    La paga la software house
+* Evolutiva: Aggiungere funzionalita'
+    La paga il cliente
+
+A volte viene chiesto al cliente di pagare un canone annuo che dovrebbe coprire tutte le manutenzioni.
+
+Ora esercizi, ci manca solo un ultima particina
